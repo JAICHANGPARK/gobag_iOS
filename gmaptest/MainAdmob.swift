@@ -11,8 +11,6 @@ import GoogleMobileAds
 import UIKit
 import Google
 
-
-
 class adViewController: UIViewController, GADBannerViewDelegate {
     
     @IBOutlet weak var bannerView: GADBannerView!
@@ -20,46 +18,35 @@ class adViewController: UIViewController, GADBannerViewDelegate {
     let Request = GADRequest()
     
     var interstition : GADInterstitial!
- 
-    
         override func viewDidLoad() {
         super.viewDidLoad()
-            
-            //let signin =
-            
+
             bannerView.hidden = true
             
             //Request.testDevices = [kGADSimulatorID] //admob 실험
             bannerView.delegate = self
-            bannerView.adUnitID = "ca-app-pub-7948714882446188/2641974550"
+            bannerView.adUnitID = "input your ad id"
             bannerView.rootViewController = self
             bannerView.loadRequest(Request)
             
-            interstition = GADInterstitial(adUnitID: "ca-app-pub-7948714882446188/6755946557")
-           Request.testDevices = [kGADSimulatorID, "2077ef9a63d2b398840261c8221a0c9b" ]
+            interstition = GADInterstitial(adUnitID: "input your id ")
+           Request.testDevices = [kGADSimulatorID, "input test id " ]
             interstition.loadRequest(Request)
-            
 }
-
     func adViewDidReceiveAd(bannerView: GADBannerView!) {
         bannerView.hidden = false
     }
-    
     func adView(bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
         bannerView.hidden = true
     }
-    
     @IBAction func showAd(sender: AnyObject) {
-        
         if interstition.isReady {
             interstition.presentFromRootViewController(self)
             interstition = CreteAD()
-            
         }
     }
-    
     func CreteAD() -> GADInterstitial {
-        let interstition = GADInterstitial(adUnitID: "ca-app-pub-7948714882446188/6755946557")
+        let interstition = GADInterstitial(adUnitID: "input app id")
         interstition.loadRequest(GADRequest())
         return interstition
     }
